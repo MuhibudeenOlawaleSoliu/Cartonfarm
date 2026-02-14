@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carton Farm</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    /* 3D Card Hover Effect */
+    .card-3d {
+      transform-style: preserve-3d;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card-3d:hover {
+      transform: scale(1.05) rotateX(4deg) rotateY(-4deg);
+      box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Glowing Button Animation */
+    .glow-button {
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      box-shadow: 0 0 15px #facc15, 0 0 30px #facc15 inset;
+    }
+    .glow-button::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, #facc15, #f59e0b, #facc15);
+      animation: rotateGlow 3s linear infinite;
+      z-index: -1;
+    }
+    @keyframes rotateGlow {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Smooth Fade-in Animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Floating Logo Animation */
+    .floating-logo {
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* Animated Background Glow */
+    .animated-bg {
+      background: radial-gradient(circle at top left, rgba(255,255,255,0.3), transparent 70%),
+                  radial-gradient(circle at bottom right, rgba(34,197,94,0.15), transparent 70%),
+                  #f9fafb;
+    }
+  </style>
+</head>
+<body class="animated-bg text-gray-800">
+  <!-- Hero Section -->
+  <header class="bg-green-700 text-white py-10 shadow-lg fade-in">
+    <div class="max-w-6xl mx-auto text-center">
+      <img src="logo.png" alt="Carton Farm Logo" class="mx-auto w-24 h-24 mb-4 floating-logo">
+      <h1 class="text-4xl font-extrabold mb-4">🐔 Carton Farm</h1>
+      <p class="text-lg">Fresh, Healthy & Live Chickens – Delivered to You</p>
+      <a href="#order" class="mt-6 inline-block bg-yellow-400 text-gray-900 px-6 py-3 rounded-xl font-semibold shadow glow-button hover:bg-yellow-300 transition">Order Now</a>
+    </div>
+  </header>
+
+  <!-- About Section -->
+  <section class="max-w-6xl mx-auto py-16 px-4 grid md:grid-cols-2 gap-10 items-center fade-in">
+    <img src="chicks.jpg" alt="Chicken farm" class="rounded-2xl shadow-lg card-3d">
+    <div>
+      <h2 class="text-3xl font-bold mb-4">About Us</h2>
+      <p class="text-lg leading-relaxed">At <strong>Carton Farm</strong>, we are dedicated to raising healthy, well-fed chickens for our customers. Whether you're buying for home consumption, events, or resale, we ensure the highest quality and best service.</p>
+      <p class="text-lg mt-4">Our farm is built on trust, hygiene, and customer satisfaction. We make it easy for you to order live chickens online and get them delivered fresh and on time.</p>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="bg-gray-100 py-16 fade-in">
+    <div class="max-w-6xl mx-auto text-center px-4">
+      <h2 class="text-3xl font-bold mb-8">Our Farm in Pictures</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <img src="broilers.jpg" alt="Chicken" class="rounded-xl shadow-md card-3d">
+        <img src="chickens.jpg" alt="Farm" class="rounded-xl shadow-md card-3d">
+        <img src="male.jpg" alt="Chicken feed" class="rounded-xl shadow-md card-3d">
+      </div>
+    </div>
+  </section>
+
+  <!-- Order Section -->
+  <section id="order" class="max-w-6xl mx-auto py-16 px-4 text-center fade-in">
+    <h2 class="text-3xl font-bold mb-6">Place Your Order</h2>
+    <p class="mb-6">Fill out the form below to order live chickens. We’ll get back to you quickly to confirm your order.</p>
+    <form id="orderForm" class="bg-white shadow-lg rounded-2xl p-8 max-w-xl mx-auto grid gap-4 card-3d">
+      <input id="name" type="text" placeholder="Your Name" class="border p-3 rounded-lg" required>
+      <input id="phone" type="tel" placeholder="Phone Number" class="border p-3 rounded-lg" required>
+      <input id="quantity" type="number" placeholder="Number of Chickens" class="border p-3 rounded-lg" required>
+      <textarea id="address" placeholder="Delivery Address" class="border p-3 rounded-lg" rows="3" required></textarea>
+      <button type="submit" class="bg-green-700 text-white py-3 rounded-xl font-semibold shadow glow-button hover:bg-green-600 transition">Submit Order</button>
+    </form>
+    <p id="confirmationMessage" class="mt-4 text-green-700 font-semibold hidden">✅ Your order has been received! We will contact you shortly.</p>
+  </section>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/+2348171909389" target="_blank" class="fixed bottom-6 right-6 bg-green-500 p-4 rounded-full shadow-lg hover:scale-110 transition">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="w-8 h-8">
+  </a>
+
+  <!-- Footer -->
+  <footer class="bg-green-700 text-white py-6 text-center fade-in">
+    <p>&copy; 2026 Carton Farm. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    // Scroll Animation
+    const faders = document.querySelectorAll('.fade-in');
+    const appearOnScroll = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    faders.forEach(fade => {
+      appearOnScroll.observe(fade);
+    });
+
+    // Handle Order Form Submission
+    document.getElementById('orderForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const quantity = document.getElementById('quantity').value.trim();
+      const address = document.getElementById('address').value.trim();
+
+      if (!name || !phone || !quantity || !address) {
+        alert('⚠️ Please fill out all fields before submitting.');
+        return;
+      }
+
+      document.getElementById('confirmationMessage').classList.remove('hidden');
+
+      const whatsappMessage = `Hello Carton Farm!\n\nI want to order ${quantity} live chickens.\n\nName: ${name}\nPhone: ${phone}\nAddress: ${address}`;
+      const whatsappURL = `https://wa.me/+2348171909389?text=${encodeURIComponent(whatsappMessage)}`;
+      setTimeout(() => {
+        window.open(whatsappURL, '_blank');
+      }, 2000);
+
+      document.getElementById('orderForm').reset();
+    });
+  </script>
+</body>
+</html>
